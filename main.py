@@ -57,3 +57,33 @@ elif radio_selected_option == "Missing Values":
 
         # Display the first 16 rows of the DataFrame after null value replacement
         st.write(copy_df.head(16))
+
+elif radio_selected_option == "Basic Statics":
+    # Basic statistics of numeric columns
+    st.subheader("Basic statistics of numeric columns:")
+    st.table(df.describe())
+
+elif radio_selected_option == "Some Exploration":
+    # Create two columns
+    col1, col2 = st.columns(2)
+    # First column
+    with col1:
+        # Explore job titles and their frequencies
+        st.subheader("Job Title Frequencies:")
+        st.write(df['job_title'].value_counts())
+        # Explore experience levels and their frequencies
+        st.subheader("Experience Level Frequencies:")
+        st.write(df['experience_level'].value_counts())
+
+    # Second column
+    with col2:
+        # Explore job categories and their frequencies
+        st.subheader("Job Category Frequencies:")
+        st.write(df['job_category'].value_counts())
+        # Explore employment types and their frequencies
+        st.subheader("Employment Type Frequencies:")
+        st.write(df['employment_type'].value_counts())
+
+    # Explore company sizes and their frequencies
+    st.subheader("Company Size Frequencies:")
+    st.write(df['company_size'].value_counts())
