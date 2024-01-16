@@ -9,10 +9,13 @@ st.title("Jobs and Salaries in Data Science")
 st.sidebar.header('Menu')
 
 # Sidebar radio
-radio_selected_option = st.sidebar.radio("Pick one", ["Dataset", "Basic Statics", "Missing Values", "Some Exploration"])
+radio_selected_option = st.sidebar.radio("Pick one", ["Dataset", "Missing Values", "Basic Statics", "Some Exploration"])
 
 # Read dataset (this my dataframe)
 df = pd.read_csv('jobs_in_data.csv')
+
+# Copy of dataframe
+copy_df = df.copy()
 
 # Show widgets according to selected option from sidebar radio
 if radio_selected_option == "Dataset":
@@ -28,3 +31,29 @@ if radio_selected_option == "Dataset":
         # If the user chose "Whole dataset," display a subheader and show
         st.subheader("Whole dataset:")
         st.write(df)
+
+elif radio_selected_option == "Missing Values":
+    # Check for missing values
+    st.subheader("Missing values in the dataset:")
+    st.table(df.isnull().sum())
+    # Display the first 16 rows of the DataFrame containing null values using Streamlit expander
+    with st.expander("See first 16 rows that contain null values"):
+        st.write(df.head(16))
+
+    # Remove null values from the DataFrame using dropna and display the first 16 rows
+    with st.expander("Remove null values using dropna"):
+        st.write(copy_df.dropna().head(16))
+
+    # Replace null values in specific columns with the mean of the respective column or default values
+    with st.expander("Replace null values with mean of the column using fillna"):
+        # Fill null values in 'salary' column with the mean value of the column
+        copy_df['salary'].fillna(copy_df['salary'].mean(), inplace=True)
+
+        # Fill null values in 'salary_currency' column with "Unknown"
+        copy_df['salary_currency'].fillna("Unknown", inplace=True)
+
+        # Fill null values in 'work_setting' column with "Unknown"
+        copy_df['work_setting'].fillna("Unknown", inplace=True)
+
+        # Display the first 16 rows of the DataFrame after null value replacement
+        st.write(copy_df.head(16))
