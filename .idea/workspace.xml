@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="441dae0c-42c1-4f2c-a932-bd72a47a6561" name="Changes" comment="feat: implement missing values">
+    <list default="true" id="441dae0c-42c1-4f2c-a932-bd72a47a6561" name="Changes" comment="feat: implement basic statics and some exploration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -76,7 +76,9 @@
       <workItem from="1704914840336" duration="1698000" />
       <workItem from="1704984696263" duration="10633000" />
       <workItem from="1705306449792" duration="6976000" />
-      <workItem from="1705411744565" duration="6108000" />
+      <workItem from="1705411744565" duration="6480000" />
+      <workItem from="1705509137608" duration="6751000" />
+      <workItem from="1705569599392" duration="7425000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <option name="closed" value="true" />
@@ -102,7 +104,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705417446939</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: implement basic statics and some exploration">
+      <option name="closed" value="true" />
+      <created>1705418162350</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705418162351</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,7 +146,8 @@
     <MESSAGE value="Initial" />
     <MESSAGE value="feat: implement streamlit, sidebar, dataframe" />
     <MESSAGE value="feat: implement missing values" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement missing values" />
+    <MESSAGE value="feat: implement basic statics and some exploration" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement basic statics and some exploration" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dataFinalProject$main.coverage" NAME="main Coverage Results" MODIFIED="1704985425956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

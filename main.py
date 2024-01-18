@@ -9,7 +9,8 @@ st.title("Jobs and Salaries in Data Science")
 st.sidebar.header('Menu')
 
 # Sidebar radio
-radio_selected_option = st.sidebar.radio("Pick one", ["Dataset", "Missing Values", "Basic Statics", "Some Exploration"])
+radio_selected_option = st.sidebar.radio("Pick one", ["Dataset", "Missing Values", "Basic Statics", "Some Exploration",
+                                                      "Some Charts"])
 
 # Read dataset (this my dataframe)
 df = pd.read_csv('jobs_in_data.csv')
@@ -87,3 +88,32 @@ elif radio_selected_option == "Some Exploration":
     # Explore company sizes and their frequencies
     st.subheader("Company Size Frequencies:")
     st.write(df['company_size'].value_counts())
+
+elif radio_selected_option == "Some Charts":
+    # Pie chart: Explore company sizes and their frequencies
+    st.subheader("Pie Chart: Company Size Frequencies")
+    employment_type_counts = df['company_size'].value_counts()
+    plt.figure(figsize=(10, 6))
+    plt.pie(employment_type_counts, labels=employment_type_counts.index, autopct='%1.1f%%',
+            colors=['lightcoral', 'lightgreen', 'lightskyblue'])
+    plt.title("Company Size Frequencies")
+    st.pyplot(plt)
+    # Bar chart: Explore job categories and their frequencies
+    st.subheader("Bar Chart: Job Category Frequencies")
+    job_category_counts = df['job_category'].value_counts()
+    plt.figure(figsize=(10, 6))
+    plt.bar(job_category_counts.index, job_category_counts.values, color='skyblue')
+    plt.title("Job Category Frequencies")
+    plt.xlabel("Job Category")
+    plt.ylabel("Frequency")
+    plt.xticks(rotation=45, ha='right')
+    st.pyplot(plt)
+    # Line chart: Explore experience level and their frequencies
+    st.subheader("Line Chart: Experience Level Frequencies")
+    plt.figure(figsize=(10, 6))
+    experience_level_counts = df['experience_level'].value_counts()
+    plt.plot(experience_level_counts.values[::-1], experience_level_counts.index[::-1], marker='o', linestyle='-')
+    plt.title("Experience Level Frequencies")
+    plt.xlabel("Frequency")
+    plt.ylabel("Experience Level")
+    st.pyplot(plt)
