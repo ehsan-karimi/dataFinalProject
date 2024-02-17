@@ -1,6 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
+from scipy.spatial.transform import rotation
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 
 # Streamlit app header
 st.title("Jobs and Salaries in Data Science")
@@ -116,4 +120,45 @@ elif radio_selected_option == "Some Charts":
     plt.title("Experience Level Frequencies")
     plt.xlabel("Frequency")
     plt.ylabel("Experience Level")
+    st.pyplot(plt)
+    # Another chart with linear regression
+    df3 = df[df['experience_level'] == 'Senior']
+
+    # Calculate mean salary for each work experience year
+    mean_salary_each_year = df3.groupby('work_year')['salary_in_usd'].mean()
+
+    # Create DataFrame from dictionary
+    df2 = pd.DataFrame({'work_year': mean_salary_each_year.index, 'mean_salary': mean_salary_each_year.values})
+
+    # Split data into features (X) and target variable (y)
+    X = df2[['work_year']]
+    y = df2['mean_salary']
+
+    # Split data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Create linear regression object
+    model = LinearRegression()
+
+    # Train the model using the training sets
+    model.fit(X_train, y_train)
+
+    # Make predictions
+    y_pred_train = model.predict(X_train)
+    y_pred_test = model.predict(X_test)
+
+    # Plot the data points
+    plt.figure(figsize=(10, 6))
+    plt.scatter(X_test, y_test, color='black', label='Test Data')
+    plt.scatter(X_train, y_train, color='red', label='Train Data')
+
+    # Plot the regression line using the training set
+    plt.plot(X_train, y_pred_train, color='blue', linewidth=3, label='Regression Line')
+    st.subheader("Linear Regression: Mean Salary for Senior-Level Employees by Work Experience Year")
+    plt.title("Mean Salary for Senior-Level Employees by Work Experience Year")
+    plt.xlabel("Work Experience Year")
+    plt.ylabel("Mean Salary (USD)")
+    plt.legend()
+    # Set x-axis limits
+    plt.xlim(df2['work_year'].min() - 1, df2['work_year'].max() + 1)
     st.pyplot(plt)
