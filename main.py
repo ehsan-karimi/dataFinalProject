@@ -1,10 +1,8 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import streamlit as st
-from scipy.spatial.transform import rotation
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
 
 # Streamlit app header
 st.title("Jobs and Salaries in Data Science")

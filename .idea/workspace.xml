@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="441dae0c-42c1-4f2c-a932-bd72a47a6561" name="Changes" comment="feat: implement some charts">
+    <list default="true" id="441dae0c-42c1-4f2c-a932-bd72a47a6561" name="Changes" comment="feat: implement linear regression">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -23,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,6 +87,8 @@
       <workItem from="1707316280529" duration="13607000" />
       <workItem from="1708158095325" duration="6685000" />
       <workItem from="1708192102605" duration="1262000" />
+      <workItem from="1708273810094" duration="662000" />
+      <workItem from="1708415265780" duration="335000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <option name="closed" value="true" />
