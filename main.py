@@ -121,6 +121,7 @@ elif radio_selected_option == "Some Charts":
     plt.ylabel("Experience Level")
     st.pyplot(plt)
     # Another chart with linear regression
+    st.subheader("Linear Regression")
     # Selecting only the required columns
     df = df[['work_year', 'salary_in_usd']].dropna()
 
