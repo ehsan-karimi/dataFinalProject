@@ -1,4 +1,4 @@
-Jobs and Salaries in Data Science
+#Jobs and Salaries in Data Science
 
 This project is designed to explore jobs and salaries in the field of Data Science. It utilizes Python libraries such as Pandas, Matplotlib and Streamlit to provide interactive visualizations and insights.
 
