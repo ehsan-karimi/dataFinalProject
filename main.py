@@ -1,8 +1,12 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
+import numpy as np
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import accuracy_score, classification_report, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 # Streamlit app header
 st.title("Jobs and Salaries in Data Science")
@@ -120,43 +124,35 @@ elif radio_selected_option == "Some Charts":
     plt.ylabel("Experience Level")
     st.pyplot(plt)
     # Another chart with linear regression
-    df3 = df[df['experience_level'] == 'Senior']
+    # Selecting only the required columns
+    df = df[['work_year', 'salary_in_usd']].dropna()
 
-    # Calculate mean salary for each work experience year
-    mean_salary_each_year = df3.groupby('work_year')['salary_in_usd'].mean()
+    # Grouping data by work year and calculating average salary for each year
+    avg_salary_by_year = df.groupby('work_year')['salary_in_usd'].mean().reset_index()
 
-    # Create DataFrame from dictionary
-    df2 = pd.DataFrame({'work_year': mean_salary_each_year.index, 'mean_salary': mean_salary_each_year.values})
+    # Creating feature (work year) and target variable (average salary)
+    X = avg_salary_by_year['work_year'].values.reshape(-1, 1)
+    y = avg_salary_by_year['salary_in_usd'].values
 
-    # Split data into features (X) and target variable (y)
-    X = df2[['work_year']]
-    y = df2['mean_salary']
-
-    # Split data into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    # Create linear regression object
+    # Fitting linear regression model
     model = LinearRegression()
+    model.fit(X, y)
 
-    # Train the model using the training sets
-    model.fit(X_train, y_train)
+    # Predicting average salary for future years
+    future_years = np.arange(df['work_year'].min(), df['work_year'].max() + 5).reshape(-1, 1)
+    predicted_salaries = model.predict(future_years)
 
-    # Make predictions
-    y_pred_train = model.predict(X_train)
-    y_pred_test = model.predict(X_test)
+    # Calculating R-squared (R2) score
+    r2 = r2_score(y, model.predict(X))
+    st.write("R-squared (R2) Score:", r2)
 
-    # Plot the data points
+    # Plotting Salary Growth Analysis
     plt.figure(figsize=(10, 6))
-    plt.scatter(X_test, y_test, color='black', label='Test Data')
-    plt.scatter(X_train, y_train, color='red', label='Train Data')
-
-    # Plot the regression line using the training set
-    plt.plot(X_train, y_pred_train, color='blue', linewidth=3, label='Regression Line')
-    st.subheader("Linear Regression: Mean Salary for Senior-Level Employees by Work Experience Year")
-    plt.title("Mean Salary for Senior-Level Employees by Work Experience Year")
-    plt.xlabel("Work Experience Year")
-    plt.ylabel("Mean Salary (USD)")
+    plt.scatter(X, y, color='blue', label='Actual')
+    plt.plot(future_years, predicted_salaries, color='red', linestyle='--', label='Predicted')
+    plt.title('Salary Growth Analysis')
+    plt.xlabel('Work Year')
+    plt.ylabel('Average Salary (USD)')
     plt.legend()
-    # Set x-axis limits
-    plt.xlim(df2['work_year'].min() - 1, df2['work_year'].max() + 1)
+    plt.grid(True)
     st.pyplot(plt)
