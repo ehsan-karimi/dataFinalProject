@@ -1,12 +1,9 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import streamlit as st
-import numpy as np
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import accuracy_score, classification_report, mean_squared_error, r2_score
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import r2_score
 
 # Streamlit app header
 st.title("Jobs and Salaries in Data Science")
